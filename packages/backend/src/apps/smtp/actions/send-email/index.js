@@ -82,7 +82,7 @@ export default defineAction({
       cc: $.step.parameters.cc.split(','),
       bcc: $.step.parameters.bcc.split(','),
       subject: $.step.parameters.subject,
-      text: $.step.parameters.body,
+      html: $.step.parameters.body,
     });
 
     $.setActionItem({ raw: info });
