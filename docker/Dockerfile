@@ -21,7 +21,7 @@ RUN \
   apk del build-dependencies
 
 COPY ./docker/entrypoint.sh /entrypoint.sh
-COPY ./compose-entrypoint.sh /compose-entrypoint.sh
+COPY ./docker/compose-entrypoint.sh /compose-entrypoint.sh
 RUN dos2unix /compose-entrypoint.sh
 
 EXPOSE 3000
