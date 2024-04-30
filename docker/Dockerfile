@@ -5,6 +5,7 @@ ENV PORT 3000
 
 RUN \
   apk --no-cache add --virtual build-dependencies python3 build-base git
+RUN apk add --no-cache openssl dos2unix
 
 WORKDIR /automatisch
 
@@ -20,6 +21,8 @@ RUN \
   apk del build-dependencies
 
 COPY ./docker/entrypoint.sh /entrypoint.sh
+COPY ./compose-entrypoint.sh /compose-entrypoint.sh
+RUN dos2unix /compose-entrypoint.sh
 
 EXPOSE 3000
-ENTRYPOINT ["sh", "/entrypoint.sh"]
+ENTRYPOINT ["sh", "/compose-entrypoint.sh"]

@@ -2,11 +2,9 @@ version: '3.9'
 services:
   main:
     build:
-      context: ./docker
-      dockerfile: Dockerfile.compose
-    entrypoint: /compose-entrypoint.sh
+      dockerfile: ./docker/Dockerfile
     ports:
-      - '3000:3000'
+      - '3010:3000'
     depends_on:
       postgres:
         condition: service_healthy
@@ -22,6 +20,7 @@ services:
       - POSTGRES_DATABASE=automatisch
       - POSTGRES_USERNAME=automatisch_user
       - POSTGRES_PASSWORD=automatisch_password
+      - WEB_APP_URL=http://zap.danwager.com
       - ENCRYPTION_KEY
       - WEBHOOK_SECRET_KEY
       - APP_SECRET_KEY
@@ -29,9 +28,7 @@ services:
       - automatisch_storage:/automatisch/storage
   worker:
     build:
-      context: ./docker
-      dockerfile: Dockerfile.compose
-    entrypoint: /compose-entrypoint.sh
+      dockerfile: ./docker/Dockerfile
     depends_on:
       - main
     environment:
@@ -41,6 +38,7 @@ services:
       - POSTGRES_DATABASE=automatisch
       - POSTGRES_USERNAME=automatisch_user
       - POSTGRES_PASSWORD=automatisch_password
+      - WEB_APP_URL=http://zap.danwager.com
       - ENCRYPTION_KEY
       - WEBHOOK_SECRET_KEY
       - APP_SECRET_KEY
