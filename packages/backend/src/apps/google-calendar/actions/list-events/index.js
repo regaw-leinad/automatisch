@@ -58,7 +58,8 @@ export default defineAction({
       pageToken: undefined,
       orderBy: 'startTime',
       timeMin: start.toFormat(FORMAT_TIMESTAMP),
-      timeMax: end.toFormat(FORMAT_TIMESTAMP)
+      timeMax: end.toFormat(FORMAT_TIMESTAMP),
+      singleEvents: true
     };
 
     const results = [];
