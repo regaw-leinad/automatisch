@@ -82,7 +82,7 @@ export default defineAction({
       }
     } while (params.pageToken);
 
-    $.setActionItem({raw: results});
+    $.setActionItem({raw: {events: results}});
   },
 
   getStartOf(intervalType) {
